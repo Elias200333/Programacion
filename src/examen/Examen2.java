@@ -32,21 +32,20 @@ public class Examen2 {
             while(f.hasNextLine()) {
                 String lineaLeida = f.nextLine();
 
-                String parentesisI = "\\(";
-                String parentesisF = "\\)";
+                /* Todos los caracteres especiales se eliminan, dejando solo palabras */
 
                 lineaLeida = lineaLeida.replaceAll(",","")
                         .replaceAll("\\.","")
                         .replaceAll(",","")
-                        .replaceAll(parentesisI,"")
-                        .replaceAll(parentesisF,"")
+                        .replaceAll("\\(","")
+                        .replaceAll("\\)","")
                         .replaceAll("\"","")
                         .replaceAll(":","");
 
                 String[] palabras = lineaLeida.split(" ");
 
                 for (int i = 0; i < palabras.length; i++){
-                    if (palabras[i].length() >= numero){
+                    if (palabras[i].length() >= numero){ // El largo de la palabra es igual o superior
                         contador++;
                     }
                 }
@@ -59,6 +58,6 @@ public class Examen2 {
         } catch (FileNotFoundException errorEnArchivo) {
             errorEnArchivo.printStackTrace();
         }
-        return contador;
+        return contador; // Se devuelve el resultado
     }
 }
