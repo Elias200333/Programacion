@@ -29,11 +29,35 @@ public class Examen3 {
             while(f.hasNextLine()) {
                 String lineaLeida = f.nextLine();
 
+                int posiciones = 1;
+
                 String[] palabras = lineaLeida.split(",");
 
-                boolean
+                if (palabras[posiciones].contains("\"")){
+                    while (true){
+                        posiciones++;
+                        if (palabras[posiciones].contains("\"")){
+                            break;
+                        }
+                    }
+                }
 
-                for (int i = 0; i < )
+                posiciones++;
+
+                String palabra = palabras[posiciones];
+
+                boolean noExiste = true;
+
+                for (int i = 0; i < plataformas.size(); i++){
+                    if (plataformas.get(i).equals(palabra)){
+                        noExiste = false;
+                        break;
+                    }
+                }
+
+                if (noExiste){
+                    plataformas.add(palabras[2]);
+                }
             }
             /*
              * Se libera el fichero que estamos leyendo.
