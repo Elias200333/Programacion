@@ -11,6 +11,17 @@ public class Examen {
         elRapido(jugadores);
     }
 
+    /**
+     * Pre: ---
+     *
+     * Post: El método elRapido crea una tabla de jugadores con datos aleatorios,
+     * y crea un sistema de rondas que, a medida que vayan perdiendo jugadores,
+     * si pierden sus vidas son eliminados. Hasta que finalmente solo queda un
+     * ganador.
+     *
+     * (Nota, para evitar mucha espera, y con propositos de pruebas, máximo 4
+     * jugadores.)
+     * */
     private static void elRapido(int jugadores){
         /* Creación de jugadores */
 
@@ -20,7 +31,7 @@ public class Examen {
             String nombre = "Jugador "+i;
             int dorsal = i;
             int lvlPotencia = (int) (Math.random()*10+1);
-            int lvlPorteria = (int) (Math.random()*5+1);
+            int lvlPorteria = (int) (Math.random()*5+1); // Tienen menos rango para evitar partidas infinitas
             Jugador caja = new Jugador(nombre, dorsal, lvlPotencia, lvlPorteria);
             jugador.add(caja);
         }
@@ -33,14 +44,14 @@ public class Examen {
 
         while (true){
             System.out.println("Ronda "+partido);
-            if (jugador.size() == 1) {
+            if (jugador.size() == 1) { // Si solo queda un jugador
                 break;
             }
             int player = portero + 1;
-            if (player >= jugador.size()){
+            if (player >= jugador.size()){ // Si el player supera el tamaño de la tabla
                 player = 0;
             }
-            if (portero >= jugador.size()){
+            if (portero >= jugador.size()){ // Si el portero supera el tamaño de la tabla
                 portero = 0;
             }
 
@@ -55,9 +66,9 @@ public class Examen {
             int porteria = porteroActual.getLvlPorteria();
 
             if (potencia > porteria){
-                porteroActual.setVidas(porteroActual.getVidas()-1);
+                porteroActual.setVidas(porteroActual.getVidas()-1); // Reduce su vida
                 System.out.println("Al jugador "+porteroActual.getNombre()+" le han marcado un gol.");
-                if (porteroActual.getVidas() == 0){
+                if (porteroActual.getVidas() == 0){ // Si lo detecta sin vidas
                     System.out.println(porteroActual.getNombre()+" ha sido eliminado");
                     jugador.remove(portero);
                 }
@@ -70,7 +81,7 @@ public class Examen {
             partido++;
         }
 
-        Jugador ganador = jugador.get(0);
+        Jugador ganador = jugador.get(0); // Obtener ganador
 
         System.out.println("Ganador: "+ganador.getNombre()+" con un total vidas de "+ganador.getVidas());
     }

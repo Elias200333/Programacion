@@ -16,6 +16,13 @@ public class Examen2 {
                 " palabras a partir de la longitud "+numero);
     }
 
+    /**Pre: ---
+     *
+     * Post: El método palabrasmasLargasQue devuelve la cantidad de palabras
+     * que se encuentran en un documento recibido como paramentro, de manera
+     * que cuenta las palabras que miden como mínimo el parámetro enviado.
+     * */
+
     private static int palabrasmasLargasQue(String nombre, int numero){
         File file = new File(nombre);
         int contador = 0;

@@ -55,10 +55,22 @@ public class Jugador {
         this.vidas = vidas;
     }
 
+    /**Pre: ---
+     *
+     * Post: El método habilidadDisparo devuelve una potencia calculada con
+     * el lvlPotencia del jugador multiplicada aleatoriamente. Se tiene más
+     * probabilidad en los disparos para evitar alargar infinitamente la partida.
+     */
+
     public int habilidadDisparo(){
         return lvlPotencia*(int)(int)(Math.floor(Math.random()*20 + 1));
     }
-
+    /**Pre: ---
+     *
+     * Post: El método habilidadPorteria devuelve una resistencia calculada con
+     * el lvlPorteria del jugador multiplicada aleatoriamente. Se tiene menos
+     * probabilidad en la resistencia para evitar alargar infinitamente la partida.
+     */
     public int habilidadPorteria(){
         return lvlPorteria*(int)(Math.floor(Math.random()*5 + 1));
     }
