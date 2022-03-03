@@ -56,10 +56,10 @@ public class Jugador {
     }
 
     public int habilidadDisparo(){
-        return lvlPotencia*(int)(Math.random()*100 + 1);
+        return lvlPotencia*(int)(int)(Math.floor(Math.random()*20 + 1));
     }
 
     public int habilidadPorteria(){
-        return lvlPorteria*(int)(Math.random()*100 + 1);
+        return lvlPorteria*(int)(Math.floor(Math.random()*5 + 1));
     }
 }
