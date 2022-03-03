@@ -25,6 +25,34 @@ public class Examen {
             jugador.add(caja);
         }
 
+        /*Rondas*/
 
+        int portero = (int) (Math.random()*jugador.size());
+
+        while (true){
+            if (jugador.size() == 1) {
+                break;
+            }
+            int player = portero + 1;
+            if (player == jugador.size()){
+                player = 0;
+            }
+
+            Jugador jugadorActual = jugador.get(player);
+            Jugador porteroActual = jugador.get(portero);
+
+            if (jugadorActual.getLvlPotencia() > porteroActual.getLvlPorteria()){
+                porteroActual.setVidas(porteroActual.getVidas()-1);
+                if (porteroActual.getVidas() == 0){
+                    jugador.remove(portero);
+                }
+            }
+
+            portero++;
+        }
+
+        Jugador ganador = jugador.get(0);
+
+        System.out.println("Ganador: "+ganador.getNombre()+" con un total vidas de "+ganador.getVidas());
     }
 }
