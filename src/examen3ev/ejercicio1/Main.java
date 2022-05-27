@@ -5,11 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        leerFichero("src/examen3ev/ejercicio1/HablanosDelDon.txt");
+    public static void main(String[] args)
+    {
+        leerFichero("src/examen3ev/ejercicio1/HablanosDelDon.txt", "n");
     }
 
-    public static void leerFichero(String nombre){
+    public static void leerFichero(String nombre, String letra){
         File file = new File(nombre);
         try {
             /*
@@ -21,13 +22,23 @@ public class Main {
              * Recorremos el fichero linea por linea.
              */
 
+            int contadorLineas = 1;
             while(f.hasNextLine()) {
                 String linea = f.nextLine();
                 linea = linea.replaceAll(",", "").replaceAll("\\.","")
-                        .replaceAll("¿", "").replaceAll("\\?", "");
+                        .replaceAll(";","").replaceAll("\\?", "")
+                        .replaceAll("”","").replaceAll(":", "")
+                        .replaceAll("\\¿", "");
                 String[] palabras = linea.split(" ");
 
-                System.out.println(linea);
+                for (String palabra : palabras){
+                    if (palabra.substring(0,1).equalsIgnoreCase(letra) ||
+                            palabra.substring(palabra.length()-1,palabra.length()).equalsIgnoreCase(letra)){
+                        System.out.println("Palabra: "+palabra+" - "+contadorLineas);
+                    }
+                }
+
+                contadorLineas++;
             }
             /*
              * Se libera el fichero que estamos leyendo.
