@@ -59,6 +59,7 @@ public class Main {
 
         obtenerTotalDivorciosPorAnoYelTipo(lista, "2019", true);
         obtenerTotalDivorciosPorAnoYelTipo(lista, "2018", false);
+        obtenerLocalidadConMayoresDivorcios(lista, 2013, 2019);
     }
 
     public static void obtenerTotalDivorciosPorAnoYelTipo(ArrayList<Tupla> lista, String ano, boolean tipo){
@@ -80,17 +81,38 @@ public class Main {
         System.out.println(respuesta);
     }
 
-    public static void obtenerLocalidadConMayoresDivorcios(ArrayList<Tupla> lista, String anoInicio, String anoFinal){
-        Tupla mayor = null;
-        for (Tupla dato : lista){
-            if (dato.getAno().compareToIgnoreCase(anoInicio) >= 0 &&
-                    dato.getAno().compareToIgnoreCase(anoFinal) <= 0){
-                if (mayor == null){
-                    mayor = dato;
-                }else {
+    public static void obtenerLocalidadConMayoresDivorcios(ArrayList<Tupla> lista, int anoInicio, int anoFinal){
+        ArrayList<Tupla> orden = new ArrayList<Tupla>();
 
+        for (Tupla dato : lista){
+            if (Integer.parseInt(dato.getAno()) >=  anoInicio &&
+                    Integer.parseInt(dato.getAno()) <=  anoFinal){
+                boolean noEncontrado = true;
+
+                for (Tupla ordenado : orden){
+                    if (ordenado.getNombre().equals(dato.getNombre())){
+                        noEncontrado = false;
+
+                        ordenado.setTotal(ordenado.getTotal()+dato.getTotal());
+                        break;
+                    }
+                }
+
+                if (noEncontrado){
+                    orden.add(dato);
                 }
             }
         }
+
+        int i = 1;
+        Tupla mayor = null;
+        for (Tupla organizacion : orden){
+            if (mayor == null || mayor.getTotal() < organizacion.getTotal()){
+                mayor = organizacion;
+            }
+        }
+
+        System.out.println("La localidad con mayores divorcios entre "+anoInicio+" y "+anoFinal+
+                            " es en "+mayor.getNombre()+", con un total de "+mayor.getTotal());
     }
 }
