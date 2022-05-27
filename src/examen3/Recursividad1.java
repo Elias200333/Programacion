@@ -7,6 +7,8 @@ public class Recursividad1 {
         System.out.println(esPalindromo("halah"));
 
         System.out.println(sumarNaturales(10));
+
+        System.out.println(potenciaNumero(5, 4));
     }
 
     public static boolean esPalindromo(String palabra){
@@ -33,13 +35,31 @@ public class Recursividad1 {
         }
     }
 
-    public static int potenciaNumero(int base, int exponente){
+    public static double potenciaNumero(double base, int exponente){
         if (exponente > 0){
-            return sumarNaturales(n-1)+n;
+            return potenciaPos(base, Math.abs(exponente));
+        }else if (exponente < 0){
+            return potenciaNeg(base, Math.abs(exponente));
         }else {
-            return 0;
+            return 1;
         }
     }
 
-    public static
+    private static double potenciaPos(double base, int exponente){
+        if(exponente > 1){
+            double nBase = potenciaPos(base, exponente - 1);
+            return nBase * base;
+        }else{
+            return base;
+        }
+    }
+
+    private static double potenciaNeg(double base, int exponente){
+        if(exponente > -1){
+            double nBase = potenciaNeg(base, exponente - 1);
+            return nBase / base;
+        }else{
+            return base;
+        }
+    }
 }
