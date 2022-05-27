@@ -27,20 +27,42 @@ public class MySQLAccess {
     final private String user = "root";
     final private String passwd = "";
 
-    private void readDataBase() throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");
-
-        connect = DriverManager
-                .getConnection("jdbc:mysql://" + host + "?"
-                        + "user=" + user + "&password=" + passwd );
-    }
-
-    public void hacerSelect(String consulta){
+    public void hacerSelect(String letra, String palabra, int linea){
         try {
-            readDataBase();
+            /*
+             * Cargamos el driver MySQL que hemos descargado anteriormente.
+             * Cada BD tiene su propio driver, este únicamente es para
+             * las BD MysSQL.
+             */
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // Setup the connection with the DB
+            /*
+             * Establecemos la conexión con nuestra BD utilizando
+             * los datos de conexión que teníamos almacenados
+             * anteriormente.
+             */
+            connect = DriverManager
+                    .getConnection("jdbc:mysql://" + host + "?"
+                            + "user=" + user + "&password=" + passwd );
+
+            /*
+             * Creamos statement para que la BD nos permita realizar
+             * consultas
+             */
             preparedStatement = connect
-                    .prepareStatement(consulta);
-            resultSet = preparedStatement.executeQuery();
+                    .prepareStatement("insert into registro(Letra, Palabra, Linea) values (?, ?, ?)");
+
+            /*
+             * Cada uno de los "?" de la consulta indica que ahí se sitúa un parámetro que
+             * todavía no se ha añadido. Para poder hacerlo, ejecutamos las consultas set con
+             * la posición del parametro que estamos colocando y su valor. LAS POSICIONES
+             * EMPIEZAN DESDE 1!.
+             */
+            preparedStatement.setString(1, letra);
+            preparedStatement.setString(2, palabra);
+            preparedStatement.setInt(3, linea);
+            preparedStatement.executeUpdate();
         }catch (Exception e){
             System.out.println(e.toString());
         }finally {

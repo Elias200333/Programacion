@@ -7,10 +7,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args)
     {
-        leerFichero("src/examen3ev/ejercicio1/HablanosDelDon.txt", "n");
+        leerFichero("src/examen3ev/ejercicio1/HablanosDelDon.txt", "a");
     }
 
     public static void leerFichero(String nombre, String letra){
+        MySQLAccess baseDatos = new MySQLAccess();
         File file = new File(nombre);
         try {
             /*
@@ -41,7 +42,7 @@ public class Main {
                         palabra.substring(palabra.length()-1,palabra.length())
                             .equalsIgnoreCase(letra))
                     {
-                        
+                        baseDatos.hacerSelect(letra, palabra, contadorLineas);
                     }
                 }
 
