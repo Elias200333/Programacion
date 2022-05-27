@@ -29,6 +29,14 @@ public class ListaSimple {
 	public void setSize(int size) {
 		this.size = size;
 	}
+
+	/**
+	 * Pre: ---
+	 *
+	 * Post: El método add recibe un Node y lo inserta en la lista
+	 * situándola en la última posición.
+	 *
+	 * */
 	
 	public boolean add(Node node) {
 		try {
@@ -47,7 +55,15 @@ public class ListaSimple {
 			return false;
 		}
 	}
-	
+
+	/**
+	 * Pre: ---
+	 *
+	 * Post: El método add recibe un Node y una posicion y lo
+	 * inserta en la lista situándola en la posición recibida.
+	 *
+	 * */
+
 	public boolean add(int position, Node node) {
 		try {
 			if(position == 0) {
@@ -72,7 +88,15 @@ public class ListaSimple {
 			return false;
 		}
 	}
-	
+
+	/**
+	 * Pre: ---
+	 *
+	 * Post: El método delete recibe una posición y elimina el Node
+	 * situado en ese lugar
+	 *
+	 * */
+
 	public boolean delete(int position) {
 		try {
 			Node p = first;
@@ -97,6 +121,14 @@ public class ListaSimple {
 		}
 	}
 
+	/**
+	 * Pre: ---
+	 *
+	 * Post: El método show muestra la lista de nodos con
+	 * su información.
+	 *
+	 * */
+
 	public void show() {
 		Node p = first;
 		for(int i = 0; i < size; i++) {
@@ -104,7 +136,15 @@ public class ListaSimple {
 			p = p.getNext();
 		}
 	}
-	
+
+	/**
+	 * Pre: ---
+	 *
+	 * Post: El método get recibe una posición y devuelve el Node
+	 * situado en ese lugar.
+	 *
+	 * */
+
 	public Node get(int position) {
 		Node p = first;
 		
@@ -117,6 +157,14 @@ public class ListaSimple {
 			return p;
 		}
 	}
+
+	/**
+	 * Pre: ---
+	 *
+	 * Post: El eliminarMayor elimina el Node con el contenido int
+	 * más valorado.
+	 *
+	 * */
 
 	public void eliminarMayor(){
 		Node p = first;
