@@ -25,16 +25,23 @@ public class Main {
             int contadorLineas = 1;
             while(f.hasNextLine()) {
                 String linea = f.nextLine();
-                linea = linea.replaceAll(",", "").replaceAll("\\.","")
-                        .replaceAll(";","").replaceAll("\\?", "")
-                        .replaceAll("”","").replaceAll(":", "")
+                linea = linea
+                        .replaceAll(",", "")
+                        .replaceAll("\\.","")
+                        .replaceAll(";","")
+                        .replaceAll("\\?", "")
+                        .replaceAll("”","")
+                        .replaceAll(":", "")
                         .replaceAll("\\¿", "");
+
                 String[] palabras = linea.split(" ");
 
                 for (String palabra : palabras){
                     if (palabra.substring(0,1).equalsIgnoreCase(letra) ||
-                            palabra.substring(palabra.length()-1,palabra.length()).equalsIgnoreCase(letra)){
-                        System.out.println("Palabra: "+palabra+" - "+contadorLineas);
+                        palabra.substring(palabra.length()-1,palabra.length())
+                            .equalsIgnoreCase(letra))
+                    {
+                        
                     }
                 }
 
