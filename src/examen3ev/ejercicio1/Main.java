@@ -10,6 +10,15 @@ public class Main {
         leerFichero("src/examen3ev/ejercicio1/HablanosDelDon.txt", "a");
     }
 
+    /**
+     * Pre: ---
+     *
+     * Post: el método leerFichero lee el documento de texto adjuntado, revisa linea por
+     * linea y filtrando los caracteres especiales, añade a la base de datos los datos
+     * según tienen los criterios del ejercicio.
+     *
+     * */
+
     public static void leerFichero(String nombre, String letra){
         MySQLAccess baseDatos = new MySQLAccess();
         File file = new File(nombre);
@@ -19,9 +28,12 @@ public class Main {
              * Recorremos el fichero linea por linea.
              */
 
-            int contadorLineas = 1;
+            int contadorLineas = 1; // Indica la linea del documento
             while(f.hasNextLine()) {
                 String linea = f.nextLine();
+
+                /* Retiramos carácteres especiales. */
+
                 linea = linea
                         .replaceAll(",", "")
                         .replaceAll("\\.","")

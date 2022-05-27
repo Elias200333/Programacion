@@ -27,6 +27,14 @@ public class MySQLAccess {
     final private String user = "root";
     final private String passwd = "";
 
+    /**
+     * Pre: ---
+     *
+     * Post: El método hacerSelect recibe los parametros que serán insertados en la
+     * a la tabla de registro de la base de datos.
+     *
+     * */
+
     public void hacerSelect(String letra, String palabra, int linea){
         try {
             /*
