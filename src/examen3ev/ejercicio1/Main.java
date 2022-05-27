@@ -14,10 +14,6 @@ public class Main {
         MySQLAccess baseDatos = new MySQLAccess();
         File file = new File(nombre);
         try {
-            /*
-             * Se crea un objeto [Formatter] al que se asocia un fichero deno-
-             * minado [file].
-             */
             Scanner f = new Scanner(file);
             /*
              * Recorremos el fichero linea por linea.
